@@ -6,37 +6,37 @@ export default function Home() {
       name: 'Pizza',
       description: 'Desfrute de uma explosão de sabores autênticos em cada fatia da nossa pizza.',
       price: '€ 10.00',
-      image: '/src/assets/images/pizza.jpg'
+      image: '/images/pizza.jpg'
     },
     {
       name: 'Cachorro',
       description: 'Delicie-se com o nosso cachorro, uma explosão de sabor em cada mordida.',
       price: '€ 2.75',
-      image: '/src/assets/images/cachorro.jpg'
+      image: '/images/cachorro.jpg'
     },
     {
       name: 'Sandes de Fiambre',
       description: 'Crocante por fora, cremoso por dentro',
       price: '€ 2.00',
-      image: '/src/assets/images/sandefiambre.webp'
+      image: '/images/sandefiambre.webp'
     },
     {
       name: 'Tosta Mista',
       description: 'Desfrute da simplicidade perfeita de uma tosta mista, crocante por fora e deliciosa por dentro.',
       price: '€ 2.00',
-      image: '/src/assets/images/tosta.webp'
+      image: '/images/tosta.webp'
     },
     {
       name: 'Pastel de Nata',
       description: 'Delicie-se com a nossa estrela da doçaria portuguesa: um pastel de nata cremoso por dentro e estaladiço por fora.',
       price: '€ 2.00',
-      image: '/src/assets/images/nata.jpg'
+      image: '/images/nata.jpg'
     },
     {
       name: 'Tiramisu',
       description: 'Deleite-se com o nosso tiramisu, uma sobremesa clássica com camadas de café, queijo mascarpone e cacau.',
       price: '€ 4.00',
-      image: '/src/assets/images/tiramisu.png'
+      image: '/images/tiramisu.png'
     }
   ];
 
@@ -48,7 +48,7 @@ export default function Home() {
         {/* Hero Section */}
         <section 
           className="relative h-96 container mx-auto px-4 flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: "url('/src/assets/images/banner.jpg')" }}
+          style={{ backgroundImage: "url('/images/banner.jpg')" }}
         >
           <div className="absolute inset-0 bg-black opacity-40"></div>
           <div className="relative z-10 text-center text-white px-4">
@@ -124,7 +124,7 @@ export default function Home() {
               </div>
               <div className="md:w-1/2">
                 <img
-                  src="/src/assets/images/space.webp"
+                  src="/images/space.webp"
                   alt="Interior da Pastelaria"
                   className="rounded-lg shadow-xl"
                 />

@@ -20,7 +20,7 @@ export default function Navbar() {
     <header className="bg-primary text-black shadow-md">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center">
         <div className="relative flex items-center w-full">
-          <img src="/src/assets/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-10" />
+          <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-10" />
           <h1 className="absolute left-1/2 -translate-x-1/2 font-cookie font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl sm:static sm:translate-x-0">
             Palanca Negra Café
           </h1>
