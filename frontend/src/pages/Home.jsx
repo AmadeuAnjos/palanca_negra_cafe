@@ -42,7 +42,6 @@ export default function Home() {
 
   return (
     <div className="font-sans">
-      {/* <Navbar /> REMOVA ESTA LINHA! */}
 
       {/* Conteúdo Principal */}
       <main>
