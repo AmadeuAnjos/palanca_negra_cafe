@@ -123,7 +123,7 @@ export default function Home() {
               </div>
               <div className="md:w-1/2">
                 <img
-                  src="/src/assets/images/space.webp"
+                  src="/images/space.webp"
                   alt="Interior da Pastelaria"
                   className="rounded-lg shadow-xl"
                 />
