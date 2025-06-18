@@ -5,7 +5,6 @@ export default function Sobre() {
   return (
     <div className="font-sans min-h-screen flex flex-col">
       <main className="flex-grow">
-        {/* Nova Seção de Banner (substituindo a antiga) */}
         <section className="flex items-center justify-center">
           <div className="container mx-auto">
             <div
@@ -17,22 +16,15 @@ export default function Sobre() {
                 className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
                                   md:inset-x-4 md:w-[calc(100%-2rem)]"
               />
+              <div className="relative z-20 text-center text-white">
+                <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                  A Nossa História
+                </h2>
+              </div>
               <div
                 className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
                                   md:inset-x-4 md:w-[calc(100%-2rem)]"
-              ></div>
-              <div className="relative z-20 text-center text-white">
-                <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-                  Venha Conferir
-                </h2>
-                <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
-                <Link
-                  to="/cardapio"
-                  className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
-                >
-                  Ver Cardápio
-                </Link>
-              </div>
+              ></div>             
             </div>
           </div>
         </section>
