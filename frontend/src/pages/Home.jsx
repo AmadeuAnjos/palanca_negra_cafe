@@ -16,7 +16,7 @@ export default function Home() {
     },
     {
       name: 'Sandes de Fiambre',
-      description: 'Crocante por fora, cremoso por dentro',
+      description: 'Crocante por fora, cremoso por dentro, com a melhor qualidade. Venha experimentar',
       price: '€ 2.00',
       image: '/images/sandefiambre.webp'
     },
@@ -42,63 +42,79 @@ export default function Home() {
 
   return (
     <div className="font-sans">
-
-      {/* Conteúdo Principal */}
       <main>
-        {/* Hero Section */}
-        <section 
-          className="relative h-96 container mx-auto px-4 flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/banner.jpg')" }}
-        >
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <div className="relative z-10 text-center text-white px-4">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">
-              Venha Conferir
-            </h2>
-            <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
-            <Link
-              to="/cardapio"
-              className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
+        <section className="flex items-center justify-center">
+          <div className="container mx-auto"> 
+            <div 
+                className="relative h-96 px-4 flex items-center justify-center overflow-hidden" 
             >
-              Ver Cardápio
-            </Link>
-          </div>
-        </section>
-
-        {/* Destaques */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-serif font-bold text-center mb-12">
-              Nossos Destaques
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {highlights.map((item, index) => (
+                <img 
+                    src="/images/banner.jpg" 
+                    alt="Banner de Lanches e Pizzas" 
+                    className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
+                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
+                />
+                
                 <div 
-                  key={index}
-                  className="p-6 rounded-lg shadow-md text-center border border-primary hover:shadow-lg transition-shadow duration-300"
-                >
-                  <div className="h-40 mb-4 overflow-hidden rounded-lg">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{item.name}</h3>
-                  <p className="mb-4">{item.description}</p>
-                  <span className="text-primary font-bold text-lg">{item.price}</span>
+                    className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
+                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
+                ></div> 
+                
+                <div className="relative z-20 text-center text-white"> 
+                    <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                        Venha Conferir
+                    </h2>
+                    <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
+                    <Link
+                        to="/cardapio"
+                        className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
+                    >
+                        Ver Cardápio
+                    </Link>
                 </div>
-              ))}
             </div>
           </div>
         </section>
 
-        {/* Sobre */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-playfair font-bold text-center mb-12">
+              Nossos Destaques
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {highlights.map((item, index) => {
+                const isSandesDeFiambre = item.name === 'Sandes de Fiambre';
+                const imageBorder = isSandesDeFiambre 
+                  ? 'border border-primary rounded-lg'
+                  : ''; 
+
+                return (
+                  <div 
+                    key={index}
+                    className="p-6 rounded-lg shadow-md text-center border border-primary hover:shadow-lg transition-shadow duration-300"
+                  >
+                    <div className="h-40 mb-4 overflow-hidden rounded-lg">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className={`w-full h-full object-cover ${imageBorder}`}
+                      />
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">{item.name}</h3>
+                    <p className="mb-4">{item.description}</p>
+                    <span className="text-primary font-bold text-lg">{item.price}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <section className="py-16 bg-primary text-black">
           <div className="container mx-auto px-4">
             <div className="md:flex items-center">
               <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">
-                <h2 className="text-3xl font-serif font-bold mb-6 text-bl">
+                <h2 className="text-3xl font-playfair font-bold mb-6 text-white">
                   Nossa História
                 </h2>
                 <p className="mb-4 text-justify text-white">
@@ -108,7 +124,7 @@ export default function Home() {
                   tornou-se um ponto de referência, conhecido pelo ambiente
                   acolhedor e pela variedade de delícias que oferece.
                 </p>
-                <p className="text-justify">
+                <p className="mb-4 text-justify text-white">
                   Ao longo das décadas, o Palanca Negra Café conquistou o coração
                   de quem por ali passa, seja para uma pausa rápida ou para
                   momentos de convívio. Os cachorros quentes e os bolos caseiros
