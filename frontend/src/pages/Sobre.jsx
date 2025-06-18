@@ -63,7 +63,7 @@ export default function Sobre() {
                 <div className="grid md:grid-cols-2 gap-8 mb-12">
                     <div>
                     <img
-                        src="/images/space.webp"
+                        src="/images/funders.jpg"
                         alt="Fundadores"
                         className="rounded-lg shadow-md w-full"
                     />
@@ -87,7 +87,7 @@ export default function Sobre() {
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="order-1 md:order-2">
                     <img
-                        src="/images/space.webp"
+                        src="/images/team.jpg"
                         alt="Equipe"
                         className="rounded-lg shadow-md w-full"
                     />
