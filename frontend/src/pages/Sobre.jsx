@@ -34,7 +34,7 @@ export default function Sobre() {
           <div className="container mx-auto"> {/* Mantém o container principal */}
             {/* Aplica os mesmos recuos e largura do conteúdo do banner */}
             <div className="px-4 md:px-0 md:w-[calc(100%-2rem)] md:mx-auto"> {/* Recua e centraliza o conteúdo */}
-                <h2 className="text-3xl font-serif font-bold mb-8 text-center">
+                <h2 className="text-3xl font-serif font-bold mb-8 text-center text-black">
                     Nossa História
                 </h2>
                 <div className="mb-12 text-justify text-black">
@@ -84,7 +84,7 @@ export default function Sobre() {
                         className="rounded-lg shadow-md w-full"
                     />
                     </div>
-                    <div className="order-2 md:order-1  text-justify">
+                    <div className="order-2 md:order-1  text-justify text-black">
                     <h3 className="text-2xl font-serif font-bold mb-4">A Nossa Equipa, coração e Alma do Palanca Negra Café</h3>
                     <p className="mb-4">
                        No Palanca Negra Café, a excelência dos nossos produtos e a qualidade do serviço devem-se, acima de tudo, à nossa equipa dedicada. Contamos com um grupo de profissionais apaixonados, onde cada membro, desde os talentosos chefs que dominam a arte da culinária até aos atenciosos atendentes que o recebem com um sorriso, desempenha um papel crucial na criação da experiência Palanca Negra que tanto valoriza. Eles são o verdadeiro coração e alma do nosso estabelecimento, garantindo que a tradição e a inovação andem de mãos dadas, criando um ambiente onde a dedicação e o profissionalismo são a nossa assinatura.
