@@ -37,7 +37,7 @@ export default function Sobre() {
                 <h2 className="text-3xl font-serif font-bold mb-8 text-center">
                     Nossa História
                 </h2>
-                <div className="mb-12 text-justify">
+                <div className="mb-12 text-justify text-black">
                     <p className="mb-4">
                     No coração vibrante de Darque, uma pitoresca localidade em Viana do Castelo, ergue-se um verdadeiro tesouro da comunidade: o Palanca Negra Café. Com uma história rica que se estende por impressionantes 42 anos, este estabelecimento transcende a simples definição de um café; ele é, de facto, um pilar fundamental da comunidade local, um guardião zeloso de inúmeras memórias partilhadas e um ponto de encontro carismático que, ao longo de mais de quatro décadas, tem servido com inabalável paixão e dedicação tanto os residentes de Darque como os visitantes que por ali passam. A sua longevidade é um testemunho eloquente do carinho e da lealdade que conquistou.
                     </p>
@@ -60,7 +60,7 @@ export default function Sobre() {
                         className="rounded-lg shadow-md w-full"
                     />
                     </div>
-                    <div className="text-justify">
+                    <div className="text-justify text-black">
                     <h3 className="text-2xl font-serif font-bold mb-4">
                         A Essência do Palanca Negra Café
                     </h3>
