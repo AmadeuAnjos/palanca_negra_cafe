@@ -18,42 +18,32 @@ export default function Navbar() {
 
   return (
     <header className="bg-primary text-black shadow-md">
-      {/* Container Principal do Navbar */}
-      {/* ATENÇÃO AQUI: Grid APENAS para mobile, Flexbox para desktop */}
       <div className="container mx-auto px-4 py-2 
-        relative /* Necessário para o H1 absoluto no mobile */
-        grid grid-cols-[minmax(0,auto)_1fr_minmax(0,auto)] items-center gap-4 /* Grid para mobile */
-        md:flex md:justify-between md:items-center"> {/* Em md e acima, volta para flexbox */}
+        relative
+        grid grid-cols-[minmax(0,auto)_1fr_minmax(0,auto)] items-center gap-4
+        md:flex md:justify-between md:items-center"> 
 
-        {/* Div Agrupador do Logo (para desktop) */}
-        {/* No mobile, o logo ocupa sua própria coluna no grid. */}
-        {/* No desktop, este div se torna flex para agrupar o logo e o H1. */}
         <div className="
-          flex items-center /* Em desktop, alinha logo e H1 */
-          flex-shrink-0 /* Evita que este grupo encolha em desktop */
+          flex items-center
+          flex-shrink-0
         ">
           <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-20" /> {/* mr-4 de volta aqui para desktop */}
           
-          {/* H1 (Nome do Café) - Mudanças APENAS para o mobile */}
           <h1 className="
             font-cookie font-bold 
-            text-xl sm:text-2xl md:text-3xl lg:text-4xl 
+            text-xl sm:text-2xl md:text-3xl lg:text-3xl
             whitespace-nowrap truncate 
             z-10 
             w-auto 
-            px-2 
-            
-            /* Classes de POSICIONAMENTO para mobile */
+            px-2
+            py-2
             absolute left-1/2 -translate-x-1/2 
-
-            /* Classes que ANULAM o posicionamento absoluto APENAS em desktop */
-            md:static md:translate-x-0 md:text-left /* Reverte para fluxo normal em desktop */
+            md:static md:translate-x-0 md:text-left
           ">
             Palanca Negra Café
           </h1>
         </div>
 
-        {/* Botão do Menu Mobile (ícone de hambúrguer) - Estilo corrigido */}
         <button 
           className={`
             md:hidden             /* Esconde em telas maiores */
