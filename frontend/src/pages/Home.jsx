@@ -76,7 +76,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white text-black">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-playfair font-bold text-center mb-12">
               Nossos Destaques
