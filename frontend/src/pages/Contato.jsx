@@ -1,66 +1,34 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Mantido, caso precise de links internos
-import ThanksModal from '../components/ThanksModal'; // Importe o componente do modal de agradecimento
+import { Link } from 'react-router-dom';
+import ThanksModal from '../components/ThanksModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Contact() {
-  // Estado para os campos do formulário
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
-    telefone: '',
     mensagem: '',
   });
-
-  // Estado para controlar a visibilidade do modal de agradecimento
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Lida com a mudança nos campos do formulário
   const handleChange = (e) => {
-    const { id, value } = e.target; // Usar 'id' para corresponder aos nomes dos campos no estado
+    const { id, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value, // Atualiza o campo correspondente no estado
+      [id]: value,
     }));
   };
 
-  // Lida com a submissão do formulário
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Impede o recarregamento padrão da página
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
-    console.log('Dados do formulário enviados:', formData);
-
-    // --- LÓGICA DE ENVIO DO FORMULÁRIO (ESCOLHA UMA OPÇÃO) ---
-
-    // Opção 1: Simulação de envio (para desenvolvimento)
     try {
-      // Simula uma chamada de rede com um atraso de 1 segundo
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setIsModalOpen(true); // Abre o modal de agradecimento
-      setFormData({ nome: '', email: '', telefone: '', mensagem: '' }); // Limpa o formulário
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      alert('Ocorreu um erro ao enviar a mensagem. Por favor, tente novamente mais tarde.');
-    }
-
-    // Opção 2: Para Netlify Forms (adicione data-netlify="true" na tag <form> e o input oculto)
-    /*
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ "form-name": "contact-form", ...formData }).toString(),
-    })
-    .then(() => {
-      setIsModalOpen(true); // Abre o modal
-      setFormData({ nome: '', email: '', telefone: '', mensagem: '' }); // Limpa o formulário
-    })
-    .catch((error) => alert("Erro ao enviar formulário: " + error));
-    */
-
-    // Opção 3: Para Backend customizado (requer um servidor Node.js, PHP, etc.)
-    /*
-    try {
-      const response = await fetch('/api/send-contact-email', { // Substitua pela sua URL de API
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,53 +36,72 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        setIsModalOpen(true); // Abre o modal
-        setFormData({ nome: '', email: '', telefone: '', mensagem: '' }); // Limpa o formulário
-      } else {
+      if (!response.ok) {
         const errorData = await response.json();
-        alert(`Erro: ${errorData.message || 'Não foi possível enviar a mensagem.'}`);
+        throw new Error(errorData.message || 'Erro ao enviar mensagem');
       }
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      alert('Ocorreu um erro na conexão. Verifique sua internet e tente novamente.');
+
+      setIsModalOpen(true);
+      setFormData({ nome: '', email: '', mensagem: '' });
+    } catch (err) {
+      console.error('Submission error:', err);
+      setError(err.message || 'Erro ao conectar com o servidor');
+    } finally {
+      setIsLoading(false);
     }
-    */
   };
 
-
   return (
-    <div className="font-sans"> {/* Aplica a fonte principal ao div pai */}
-
+    <div className="font-sans">
       {/* Hero Section */}
-      <section 
-        className="relative h-96 container mx-auto px-4 flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/contato-banner.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative z-10 text-center text-white px-4">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4"> {/* Ajustado para font-playfair */}
-            Fale Conosco
-          </h2>
-          <p className="text-2xl mb-8">Estamos aqui para responder às suas dúvidas</p>
-        </div>
-      </section>
+      <section className="flex items-center justify-center">
+          <div className="container mx-auto"> 
+            <div 
+                className="relative h-96 px-4 flex items-center justify-center overflow-hidden" 
+            >
+                <img 
+                    src="/images/banner.jpg" 
+                    alt="Banner de Lanches e Pizzas" 
+                    className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
+                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
+                />
+                
+                <div 
+                    className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
+                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
+                ></div> 
+                
+                <div className="relative z-20 text-center text-white"> 
+                    <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                        Tire suas dúvidas
+                    </h2>
+                </div>
+            </div>
+          </div>
+        </section>
 
       {/* Formulário de Contato */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-playfair font-bold text-center mb-12"> {/* Ajustado para font-playfair */}
+            <h2 className="text-3xl font-playfair font-bold text-center mb-12">
               Envie sua Mensagem
             </h2>
             
+            {error && (
+              <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
               <div className="md:col-span-2">
-                <label htmlFor="nome" className="block text-gray-700 font-montserrat mb-2">Nome Completo</label> {/* Ajustado para font-montserrat */}
+                <label htmlFor="nome" className="block text-gray-700 font-montserrat mb-2">
+                  Nome Completo
+                </label>
                 <input 
                   type="text" 
                   id="nome" 
-                  name="nome" // Atributo 'name' para o estado
                   value={formData.nome}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
@@ -123,12 +110,13 @@ export default function Contact() {
                 />
               </div>
               
-              <div>
-                <label htmlFor="email" className="block text-gray-700 font-montserrat mb-2">E-mail</label> {/* Ajustado para font-montserrat */}
+              <div className="md:col-span-2">
+                <label htmlFor="email" className="block text-gray-700 font-montserrat mb-2">
+                  E-mail
+                </label>
                 <input 
                   type="email" 
                   id="email" 
-                  name="email" // Atributo 'name' para o estado
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
@@ -137,24 +125,12 @@ export default function Contact() {
                 />
               </div>
               
-              <div>
-                <label htmlFor="telefone" className="block text-gray-700 font-montserrat mb-2">Telefone</label> {/* Ajustado para font-montserrat */}
-                <input 
-                  type="tel" 
-                  id="telefone" 
-                  name="telefone" // Atributo 'name' para o estado
-                  value={formData.telefone}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                  placeholder="+351 XXX XXX XXX"
-                />
-              </div>
-              
               <div className="md:col-span-2">
-                <label htmlFor="mensagem" className="block text-gray-700 font-montserrat mb-2">Mensagem</label> {/* Ajustado para font-montserrat */}
+                <label htmlFor="mensagem" className="block text-gray-700 font-montserrat mb-2">
+                  Mensagem
+                </label>
                 <textarea 
                   id="mensagem" 
-                  name="mensagem" // Atributo 'name' para o estado
                   rows="5"
                   value={formData.mensagem}
                   onChange={handleChange}
@@ -167,9 +143,10 @@ export default function Contact() {
               <div className="md:col-span-2 text-center">
                 <button 
                   type="submit"
-                  className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg" // Adicionado shadow e text-lg
+                  className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg disabled:opacity-50"
+                  disabled={isLoading}
                 >
-                  Enviar Mensagem
+                  {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
                 </button>
               </div>
             </form>
@@ -180,46 +157,49 @@ export default function Contact() {
       {/* Informações de Contato */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-12"> {/* Ajustado para font-playfair */}
+          <h2 className="text-3xl font-playfair font-bold text-center mb-12">
             Nossos Contatos
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Endereço */}
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
-                <i className="fas fa-map-marker-alt text-5xl"></i> {/* Ícone Font Awesome */}
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="text-5xl" />
               </div>
               <h3 className="text-xl font-bold mb-2">Endereço</h3>
-              <p className="text-gray-600 font-montserrat"> {/* Ajustado para font-montserrat */}
+              <address className="text-gray-600 font-montserrat not-italic">
                 Rua 25 de Abril, 149<br />
                 Darque, Viana do Castelo<br />
                 Portugal<br />
                 CEP: 4935-069
-              </p>
+              </address>
             </div>
             
-            {/* Telefone */}
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
-                <i className="fas fa-phone-alt text-5xl"></i> {/* Ícone Font Awesome */}
+                <FontAwesomeIcon icon={faPhoneAlt} className="text-5xl" />
               </div>
               <h3 className="text-xl font-bold mb-2">Telefone</h3>
-              <p className="text-gray-600 font-montserrat"> {/* Ajustado para font-montserrat */}
-                +351 258 322 747<br />
+              <p className="text-gray-600 font-montserrat">
+                <a href="tel:+351258322747" className="hover:text-primary transition">
+                  +351 258 322 747
+                </a><br />
                 Segunda a Sábado: 8h - 20h
               </p>
             </div>
             
-            {/* E-mail */}
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
-                <i className="fas fa-envelope text-5xl"></i> {/* Ícone Font Awesome */}
+                <FontAwesomeIcon icon={faEnvelope} className="text-5xl" />
               </div>
               <h3 className="text-xl font-bold mb-2">E-mail</h3>
-              <p className="text-gray-600 font-montserrat"> {/* Ajustado para font-montserrat */}
-                contato@palancanegra.com<br />
-                reservas@palancanegra.com
+              <p className="text-gray-600 font-montserrat">
+                <a href="mailto:contato@palancanegra.com" className="hover:text-primary transition">
+                  contato@palancanegra.com
+                </a><br />
+                <a href="mailto:reservas@palancanegra.com" className="hover:text-primary transition">
+                  reservas@palancanegra.com
+                </a>
               </p>
             </div>
           </div>
@@ -235,16 +215,15 @@ export default function Contact() {
               width="100%" 
               height="450" 
               style={{ border: 0 }}
-              allowFullScreen="" 
+              allowFullScreen
               loading="lazy"
               title="Localização do Palanca Negra Café"
               referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            />
           </div>
         </div>
       </section>
 
-      {/* Modal de Agradecimento, controlado pelo estado 'isModalOpen' */}
       <ThanksModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
