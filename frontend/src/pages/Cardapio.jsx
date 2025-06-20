@@ -224,10 +224,10 @@ export default function Cardapio() {
         </section>
 
         {/* SECÇÃO PRINCIPAL (Destaques, Salgados, Pratos e Snacks agora JUNTOS) */}
-        <section className="py-16 bg-gray-100 md:bg-gray-50">
+        <section className="py-16 bg-gray-100 md:bg-gray-50 text-black">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-serif font-bold mb-4">Nossas Especialidades e Petisco</h2>
+              <h2 className="text-3xl font-serif font-bold mb-4">Nossas Especialidades</h2>
               <p className="max-w-2xl mx-auto">
                 Descubra a variedade dos nossos pratos principais, snacks e salgados, preparados com carinho e tradição.
               </p>
@@ -252,7 +252,7 @@ export default function Cardapio() {
                   {/* Conteúdo do lado direito */}
                   <div className="flex-grow">
                     <h3 className="text-lg font-bold text-gray-800">{item.name}</h3> {/* Usando 'item.name' */}
-                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">{item.description || item.descricao}</p> {/* Usa 'description' ou 'descricao' */}
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-3">{item.description || item.descricao}</p> {/* Usa 'description' ou 'descricao' */}
                     <span className="text-primary font-bold text-base">{item.price || item.preco}</span> {/* Usa 'price' ou 'preco' */}
                   </div>                  
                 </div>
@@ -283,7 +283,7 @@ export default function Cardapio() {
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-lg font-bold text-gray-800">{item.nome}</h3>
-                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">{item.descricao}</p>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-3">{item.descricao}</p>
                     <span className="text-primary font-bold text-base">{item.preco}</span>
                   </div>
                 </div>
@@ -311,7 +311,7 @@ export default function Cardapio() {
                   </div>
                   <div className="flex-grow">
                     <h3 className="text-lg font-bold text-gray-800">{item.nome}</h3>
-                    <p className="text-sm text-gray-600 mb-2 line-clamp-2">{item.descricao}</p>
+                    <p className="text-sm text-gray-600 mb-2 line-clamp-3">{item.descricao}</p>
                     <span className="text-primary font-bold text-base">{item.preco}</span>
                   </div>                  
                 </div>
