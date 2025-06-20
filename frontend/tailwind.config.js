@@ -8,8 +8,8 @@ export default {
     extend: {
       colors: {
         'primary': '#F59E0B',
-        'secondary': '#FFE4E6',
-        'third': '#78350F',
+        'secondary': 'oklch(96.9% 0.015 12.422)',
+        'third': 'oklch(98.5% 0.001 106.423)',
       },
       fontFamily: {
         cookie: ['Cookie', 'cursive']
