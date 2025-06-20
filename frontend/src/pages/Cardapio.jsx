@@ -262,7 +262,7 @@ export default function Cardapio() {
         </section>
 
         {/* Cardápio Doces e Sobremesas - SEM ALTERAÇÕES na estrutura */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white text-black">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-serif font-bold mb-4">Doces e Sobremesas Tradicionais</h2>
