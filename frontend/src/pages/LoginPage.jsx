@@ -58,7 +58,7 @@ export default function LoginPage() {
       {/* Cartão de Login - Design refinado */}
       <div className="relative z-20 bg-white p-8 md:p-12 rounded-xl shadow-2xl w-full max-w-md border border-gray-100 transform hover:scale-[1.01] transition-transform duration-300 ease-out">
         <div className="text-center mb-8">
-          <h2 className="text-4xl md:text-3xl font-playfair font-extrabold text-primary mb-2">
+          <h2 className="text-3xl md:text-3xl font-playfair font-extrabold text-primary mb-2">
             Palanca Negra Café
           </h2>
           <p className="text-gray-600 py-2">Acesso Administrativo</p>
