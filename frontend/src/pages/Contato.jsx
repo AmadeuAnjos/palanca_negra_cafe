@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ThanksModal from '../components/ThanksModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from 'react-helmet-async'; // Importar Helmet
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -53,41 +54,76 @@ export default function Contact() {
 
   return (
     <div className="font-sans">
+      <Helmet>
+        {/* Título da Página */}
+        <title>Contato - Fale com o Palanca Negra Café em Viana do Castelo</title>
+
+        {/* Meta Descrição */}
+        <meta
+          name="description"
+          content="Entre em contato com o Palanca Negra Café em Darque, Viana do Castelo. Envie sua mensagem, encontre nosso endereço, telefone e e-mail. Estamos aqui para ajudar!"
+        />
+
+        {/* Keywords */}
+        <meta
+          name="keywords"
+          content="contato, Palanca Negra Café, Viana do Castelo, Darque, telefone, email, endereço, mensagem, dúvidas, atendimento ao cliente"
+        />
+
+        {/* Canonical URL (muda para o teu domínio real para a página de contato) */}
+        <link rel="canonical" href="https://www.teudominio.pt/contact" />
+
+        {/* Open Graph Tags para partilha em redes sociais */}
+        <meta property="og:title" content="Contato - Palanca Negra Café" />
+        <meta property="og:description" content="Fale connosco no Palanca Negra Café. Envie a sua mensagem e obtenha o nosso contacto em Viana do Castelo." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.teudominio.pt/contact" /> {/* Muda para o teu domínio real */}
+        <meta property="og:image" content="https://www.teudominio.pt/images/social-contact-banner.jpg" /> {/* Escolhe uma imagem relevante para contato */}
+        <meta property="og:site_name" content="Palanca Negra Café" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contato - Palanca Negra Café" />
+        <meta name="twitter:description" content="Fale connosco no Palanca Negra Café. Envie a sua mensagem e obtenha o nosso contacto em Viana do Castelo." />
+        <meta name="twitter:image" content="https://www.teudominio.pt/images/social-contact-banner.jpg" /> {/* Escolhe uma imagem relevante para contato */}
+      </Helmet>
+
       {/* Hero Section */}
       <section className="flex items-center justify-center">
-          <div className="container mx-auto"> 
-            <div 
-                className="relative h-96 px-4 flex items-center justify-center overflow-hidden" 
-            >
-                <img 
-                    src="/images/banner.jpg" 
-                    alt="Banner de Lanches e Pizzas" 
-                    className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
-                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
-                />
-                
-                <div 
-                    className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
-                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
-                ></div> 
-                
-                <div className="relative z-20 text-center text-white"> 
-                    <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-                        Tire suas dúvidas
-                    </h2>
-                </div>
+        <div className="container mx-auto">
+          <div
+            className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="/images/banner.jpg" // Pode usar uma imagem específica de contato aqui, se tiveres
+              alt="Banner de Lanches e Pizzas"
+              className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
+                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+            />
+
+            <div
+              className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
+                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+            ></div>
+
+            <div className="relative z-20 text-center text-white">
+              <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                Tire suas dúvidas
+              </h2>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
+     
       {/* Formulário de Contato */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white flex items-center justify-center">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-playfair font-bold text-center mb-12">
+          <div>
+            <h2 className="text-3xl font-playfair font-bold text-center mb-12 text-black">
               Envie sua Mensagem
             </h2>
-            
+
             {error && (
               <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
                 {error}
@@ -99,9 +135,9 @@ export default function Contact() {
                 <label htmlFor="nome" className="block text-gray-700 font-montserrat mb-2">
                   Nome Completo
                 </label>
-                <input 
-                  type="text" 
-                  id="nome" 
+                <input
+                  type="text"
+                  id="nome"
                   value={formData.nome}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
@@ -109,14 +145,14 @@ export default function Contact() {
                   required
                 />
               </div>
-              
+
               <div className="md:col-span-2">
                 <label htmlFor="email" className="block text-gray-700 font-montserrat mb-2">
                   E-mail
                 </label>
-                <input 
-                  type="email" 
-                  id="email" 
+                <input
+                  type="email"
+                  id="email"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
@@ -124,13 +160,13 @@ export default function Contact() {
                   required
                 />
               </div>
-              
+
               <div className="md:col-span-2">
                 <label htmlFor="mensagem" className="block text-gray-700 font-montserrat mb-2">
                   Mensagem
                 </label>
-                <textarea 
-                  id="mensagem" 
+                <textarea
+                  id="mensagem"
                   rows="5"
                   value={formData.mensagem}
                   onChange={handleChange}
@@ -139,9 +175,9 @@ export default function Contact() {
                   required
                 ></textarea>
               </div>
-              
+
               <div className="md:col-span-2 text-center">
-                <button 
+                <button
                   type="submit"
                   className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg disabled:opacity-50"
                   disabled={isLoading}
@@ -154,13 +190,14 @@ export default function Contact() {
         </div>
       </section>
 
+     
       {/* Informações de Contato */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-playfair font-bold text-center mb-12">
+          <h2 className="text-3xl font-playfair font-bold text-center mb-12 text-black">
             Nossos Contatos
           </h2>
-          
+
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
@@ -174,7 +211,7 @@ export default function Contact() {
                 CEP: 4935-069
               </address>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
                 <FontAwesomeIcon icon={faPhoneAlt} className="text-5xl" />
@@ -187,7 +224,7 @@ export default function Contact() {
                 Segunda a Sábado: 8h - 20h
               </p>
             </div>
-            
+
             <div className="bg-white p-6 rounded-lg shadow-md text-center border border-gray-200">
               <div className="text-primary mb-4">
                 <FontAwesomeIcon icon={faEnvelope} className="text-5xl" />
@@ -206,20 +243,22 @@ export default function Contact() {
         </div>
       </section>
 
+     
       {/* Mapa */}
       <section className="bg-white py-8">
         <div className="container mx-auto px-4">
           <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d752.7937397775988!2d-8.790933930438186!3d41.67844053676839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd25b42d7b42023d%3A0x62a87c530e159a6d!2sRua%2025%20de%20Abril%2C%20149%2C%204935-069%20Darque%2C%20Portugal!5e0!3m2!1spt-PT!2spt!4v1718637775583!5m2!1spt-PT!2spt" 
-              width="100%" 
-              height="450" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.620245209355!2d-8.777017823522227!3d41.70420797125633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd25b74681656041%3A0xc3b8a3e7a0e7a2b2!2sPalanca%20Negra%20Caf%C3%A9!5e0!3m2!1spt-PT!2spt!4v1718967990022!5m2!1spt-PT!2spt"
+              width="100%"
+              height="400"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               title="Localização do Palanca Negra Café"
               referrerPolicy="no-referrer-when-downgrade"
-            />
+            >
+            </iframe>
           </div>
         </div>
       </section>

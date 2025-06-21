@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async'; // Importar Helmet
 
 export default function Home() {
   const highlights = [
@@ -42,36 +43,70 @@ export default function Home() {
 
   return (
     <div className="font-sans">
+      <Helmet>
+        {/* Título da Página (o que aparece na aba do navegador e nos resultados de busca) */}
+        <title>Palanca Negra Café - Lanches, Pizzas, Doces e Mais em Viana do Castelo</title>
+
+        {/* Meta Descrição (o pequeno texto que aparece abaixo do título nos resultados de busca) */}
+        <meta
+          name="description"
+          content="Descubra o Palanca Negra Café em Darque, Viana do Castelo. Oferecemos deliciosas pizzas, sandes, cachorros, tostas, pastéis de nata, tiramisu e muito mais. Venha experimentar a nossa tradição e sabor!"
+        />
+
+        {/* Keywords (menos importantes hoje em dia, mas ainda podem ser incluídas) */}
+        <meta
+          name="keywords"
+          content="Palanca Negra Café, café, pastelaria, lanches, pizzas, cachorros, tostas, pastéis de nata, tiramisu, Viana do Castelo, Darque, restaurante, comida portuguesa, doces"
+        />
+
+        {/* Canonical URL (ajuda a evitar conteúdo duplicado, aponta para a versão preferencial da página) */}
+        <link rel="canonical" href="https://www.teudominio.pt/" /> {/* Altera para o teu domínio real */}
+
+        {/* Open Graph Tags (para partilhas nas redes sociais - Facebook, LinkedIn, etc.) */}
+        <meta property="og:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
+        <meta property="og:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.teudominio.pt/" /> {/* Altera para o teu domínio real */}
+        <meta property="og:image" content="https://www.teudominio.pt/images/banner.jpg" /> {/* Altera para o teu domínio real e uma imagem relevante */}
+        <meta property="og:site_name" content="Palanca Negra Café" />
+
+        {/* Twitter Card Tags (para partilhas no Twitter) */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
+        <meta name="twitter:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
+        <meta name="twitter:image" content="https://www.teudominio.pt/images/banner.jpg" /> {/* Altera para o teu domínio real e uma imagem relevante */}
+      </Helmet>
+
       <main>
         <section className="flex items-center justify-center">
-          <div className="container mx-auto"> 
-            <div 
-                className="relative h-96 px-4 flex items-center justify-center overflow-hidden" 
+          <div className="container mx-auto">
+            <div
+              className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
             >
-                <img 
-                    src="/images/banner.jpg" 
-                    alt="Banner de Lanches e Pizzas" 
-                    className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
-                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
-                />
-                
-                <div 
-                    className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
-                               md:inset-x-4 md:w-[calc(100%-2rem)]" 
-                ></div> 
-                
-                <div className="relative z-20 text-center text-white"> 
-                    <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-                        Venha Conferir
-                    </h2>
-                    <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
-                    <Link
-                        to="/cardapio"
-                        className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
-                    >
-                        Ver Cardápio
-                    </Link>
-                </div>
+              <img
+                src="/images/banner.jpg"
+                alt="Banner de Lanches e Pizzas"
+                className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
+                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+              />
+
+              <div
+                className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
+                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+              ></div>
+
+              <div className="relative z-20 text-center text-white">
+                <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                  Venha Conferir
+                </h2>
+                <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
+                <Link
+                  to="/cardapio"
+                  className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
+                >
+                  Ver Cardápio
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -84,12 +119,12 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gap-8">
               {highlights.map((item, index) => {
                 const isSandesDeFiambre = item.name === 'Sandes de Fiambre';
-                const imageBorder = isSandesDeFiambre 
+                const imageBorder = isSandesDeFiambre
                   ? 'border border-primary rounded-lg'
-                  : ''; 
+                  : '';
 
                 return (
-                  <div 
+                  <div
                     key={index}
                     className="p-6 rounded-lg shadow-md text-center border border-primary hover:shadow-lg transition-shadow duration-300"
                   >
