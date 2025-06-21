@@ -1,5 +1,9 @@
-// src/pages/Cardapio.jsx
 import React from 'react';
+// IMPORTANTE: Importar Helmet do pacote correto
+// Se estiveres a usar React 19 e tiveste problemas com react-helmet-async,
+// mantém o import de 'react-helmet-async' e certifica-te que usaste 'npm install --legacy-peer-deps'.
+// Não deves usar 'react-helmet-async-next' pois não existe.
+import { Helmet } from 'react-helmet-async'; 
 
 export default function Cardapio() {
   // Combinando os dados de Destaques, Salgados e Pratos/Snacks em um único array
@@ -126,13 +130,13 @@ export default function Cardapio() {
     {
       nome: 'Toucinho do Céu',
       descricao: 'Doce conventual português, com amêndoa e fios de ovos. Uma verdadeira tentação.',
-      price: '€ 2.90',
+      preco: '€ 2.90',
       image: '/images/toucinho-ceu.webp'
     },
     {
       nome: 'Pudim Abade de Priscos',
       descricao: 'Um pudim tradicionalmente português, rico e cremoso, com um toque de vinho do Porto e toucinho. Para os mais audazes!',
-      price: '€ 3.80',
+      preco: '€ 3.80',
       image: '/images/pudim-abade-priscos.jpg'
     }
   ];
@@ -196,6 +200,40 @@ export default function Cardapio() {
 
   return (
     <div className="font-sans min-h-screen flex flex-col">
+      <Helmet>
+        {/* Título da Página */}
+        <title>Cardápio - Palanca Negra Café | Lanches, Pizzas, Doces e Bebidas em Viana do Castelo</title>
+
+        {/* Meta Descrição */}
+        <meta
+          name="description"
+          content="Descubra o cardápio completo do Palanca Negra Café em Viana do Castelo. Lanches, pizzas, salgados tradicionais, doces e uma vasta seleção de bebidas. Sabores que apaixonam!"
+        />
+
+        {/* Keywords */}
+        <meta
+          name="keywords"
+          content="cardápio, menu, Palanca Negra Café, Viana do Castelo, lanches, pizzas, salgados, doces, sobremesas, bebidas, café, pratos, snacks, pastel de nata, bifana, francesinha"
+        />
+
+        {/* Canonical URL (muda para o teu domínio real para a página do cardápio) */}
+        <link rel="canonical" href="https://www.teudominio.pt/cardapio" />
+
+        {/* Open Graph Tags para partilha em redes sociais */}
+        <meta property="og:title" content="Cardápio do Palanca Negra Café" />
+        <meta property="og:description" content="Explore o cardápio delicioso do Palanca Negra Café: lanches, pizzas, doces e bebidas. Venha saborear em Viana do Castelo!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.teudominio.pt/cardapio" /> {/* Muda para o teu domínio real */}
+        <meta property="og:image" content="https://www.teudominio.pt/images/social-cardapio-banner.jpg" /> {/* Escolhe uma imagem relevante do cardápio */}
+        <meta property="og:site_name" content="Palanca Negra Café" />
+
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Cardápio do Palanca Negra Café" />
+        <meta name="twitter:description" content="Explore o cardápio delicioso do Palanca Negra Café: lanches, pizzas, doces e bebidas. Venha saborear em Viana do Castelo!" />
+        <meta name="twitter:image" content="https://www.teudominio.pt/images/social-cardapio-banner.jpg" /> {/* Escolhe uma imagem relevante do cardápio */}
+      </Helmet>
+
       <main className="flex-grow">
         {/* Banner - SEM ALTERAÇÕES */}
         <section className="flex items-center justify-center">
@@ -254,7 +292,7 @@ export default function Cardapio() {
                     <h3 className="text-lg font-bold text-gray-800">{item.name}</h3> {/* Usando 'item.name' */}
                     <p className="text-sm text-gray-600 mb-2 line-clamp-3">{item.description || item.descricao}</p> {/* Usa 'description' ou 'descricao' */}
                     <span className="text-primary font-bold text-base">{item.price || item.preco}</span> {/* Usa 'price' ou 'preco' */}
-                  </div>                  
+                  </div>
                 </div>
               ))}
             </div>
@@ -313,7 +351,7 @@ export default function Cardapio() {
                     <h3 className="text-lg font-bold text-gray-800">{item.nome}</h3>
                     <p className="text-sm text-gray-600 mb-2 line-clamp-3">{item.descricao}</p>
                     <span className="text-primary font-bold text-base">{item.preco}</span>
-                  </div>                  
+                  </div>
                 </div>
               ))}
             </div>
