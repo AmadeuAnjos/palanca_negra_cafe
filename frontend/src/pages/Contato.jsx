@@ -117,78 +117,81 @@ export default function Contact() {
 
      
       {/* Formulário de Contato */}
-      <section className="py-16 bg-white flex items-center justify-center">
-        <div className="container mx-auto px-4">
-          <div>
-            <h2 className="text-3xl font-playfair font-bold text-center mb-12 text-black">
-              Envie sua Mensagem
-            </h2>
+<section className="py-16 bg-white flex items-center justify-center">
+  <div className="container mx-auto px-4">
+    <div>
+      <h2 className="text-3xl font-playfair font-bold text-center mb-12 text-black">
+        Envie sua Mensagem
+      </h2>
 
-            {error && (
-              <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
-                {error}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
-              <div className="md:col-span-2">
-                <label htmlFor="nome" className="block text-gray-700 font-montserrat mb-2">
-                  Nome Completo
-                </label>
-                <input
-                  type="text"
-                  id="nome"
-                  value={formData.nome}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                  placeholder="Seu nome"
-                  required
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label htmlFor="email" className="block text-gray-700 font-montserrat mb-2">
-                  E-mail
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                  placeholder="seu@email.com"
-                  required
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label htmlFor="mensagem" className="block text-gray-700 font-montserrat mb-2">
-                  Mensagem
-                </label>
-                <textarea
-                  id="mensagem"
-                  rows="5"
-                  value={formData.mensagem}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
-                  placeholder="Como podemos ajudar?"
-                  required
-                ></textarea>
-              </div>
-
-              <div className="md:col-span-2 text-center">
-                <button
-                  type="submit"
-                  className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg disabled:opacity-50"
-                  disabled={isLoading}
-                >
-                  {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
-                </button>
-              </div>
-            </form>
-          </div>
+      {error && (
+        <div className="mb-6 p-4 bg-red-100 text-red-700 rounded-lg">
+          {error}
         </div>
-      </section>
+      )}
+
+      <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+        <div className="md:col-span-2">
+          <label htmlFor="nome" className="block text-gray-700 font-montserrat mb-2">
+            Nome Completo
+          </label>
+          <input
+            type="text"
+            id="nome"
+            value={formData.nome}
+            onChange={handleChange}
+            // ADICIONADAS AQUI: bg-white e text-black
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-white text-black"
+            placeholder="Seu nome"
+            required
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <label htmlFor="email" className="block text-gray-700 font-montserrat mb-2">
+            E-mail
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={formData.email}
+            onChange={handleChange}
+            // ADICIONADAS AQUI: bg-white e text-black
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-white text-black"
+            placeholder="seu@email.com"
+            required
+          />
+        </div>
+
+        <div className="md:col-span-2">
+          <label htmlFor="mensagem" className="block text-gray-700 font-montserrat mb-2">
+            Mensagem
+          </label>
+          <textarea
+            id="mensagem"
+            rows="5"
+            value={formData.mensagem}
+            onChange={handleChange}
+            // ADICIONADAS AQUI: bg-white e text-black
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 bg-white text-black"
+            placeholder="Como podemos ajudar?"
+            required
+          ></textarea>
+        </div>
+
+        <div className="md:col-span-2 text-center">
+          <button
+            type="submit"
+            className="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-dark transition duration-300 shadow-md text-lg disabled:opacity-50"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
 
      
       {/* Informações de Contato */}
