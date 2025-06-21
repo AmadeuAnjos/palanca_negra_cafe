@@ -251,8 +251,7 @@ export default function Contact() {
       <section className="bg-white py-8">
         <div className="container mx-auto px-4">
           <div className="rounded-lg overflow-hidden shadow-lg border border-gray-200">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.620245209355!2d-8.777017823522227!3d41.70420797125633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd25b74681656041%3A0xc3b8a3e7a0e7a2b2!2sPalanca%20Negra%20Caf%C3%A9!5e0!3m2!1spt-PT!2spt!4v1718967990022!5m2!1spt-PT!2spt"
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2106.945713083653!2d-8.784812130009374!3d41.68444391888554!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd25b75f4a025b39%3A0x3885cc77276bc485!2sCAF%C3%89%20PALANCA%20NEGRA!5e0!3m2!1spt-PT!2spt!4v1750524618513!5m2!1spt-PT!2spt" 
               width="100%"
               height="400"
               style={{ border: 0 }}
