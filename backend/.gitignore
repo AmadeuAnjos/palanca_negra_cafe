@@ -1,0 +1,3 @@
+# Arquivos de ambiente
+.env                # Ignora o arquivo principal
+.env.*              # Ignora variações (.env.local, .env.prod, etc)

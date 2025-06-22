@@ -1,29 +1,27 @@
+// C:\Users\Aluno\Desktop\Amadeu\palanca\backend\server.js
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import mysql from 'mysql2/promise';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
-
-dotenv.config();
+import pool from './db.js'; // Importa o pool de conexões que acabamos de criar em db.js
+dotenv.config(); // Carrega as variáveis de ambiente do .env
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_se_nao_definido_em_env';
+// O JWT_SECRET agora é obrigatório e deve ser definido numa variável de ambiente por segurança
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+    console.error('Erro: JWT_SECRET não está definido nas variáveis de ambiente. A aplicação não pode iniciar de forma segura.');
+    process.exit(1); // Encerra a aplicação se o segredo não estiver configurado
+}
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173' // Use variável de ambiente para o frontend URL
 }));
 app.use(bodyParser.json());
-
-// REMINDER: Este ADMIN_USER é APENAS para fins de autenticação do ADMIN antigo,
-// e NÃO deve ser usado para login de utilizadores registados na DB.
-const ADMIN_USER = {
-    username: 'admin',
-    password: 'password123'
-};
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
@@ -44,7 +42,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 // --- ROTA DE LOGIN ATUALIZADA (para utilizar a base de dados) ---
-app.post('/api/auth/login', async (req, res) => { // Adicionado 'async' pois vamos usar 'await'
+app.post('/api/auth/login', async (req, res) => {
     const { username, password } = req.body;
 
     console.log('--- Tentativa de Login (Via DB) ---');
@@ -58,12 +56,7 @@ app.post('/api/auth/login', async (req, res) => { // Adicionado 'async' pois vam
 
     let connection;
     try {
-        connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'palanca_negra_cafe'
-        });
+        connection = await pool.getConnection(); // Obtém uma conexão do pool
 
         // 1. Procurar o utilizador na base de dados
         const [users] = await connection.execute('SELECT id, username, password_hash FROM users WHERE username = ?', [username]);
@@ -96,13 +89,13 @@ app.post('/api/auth/login', async (req, res) => { // Adicionado 'async' pois vam
         res.status(500).json({ message: 'Erro interno do servidor durante o login.' });
     } finally {
         if (connection) {
-            await connection.end();
-            console.log('Conexão com o banco de dados fechada.');
+            connection.release(); // Libera a conexão de volta para o pool
+            console.log('Conexão com o banco de dados liberada.');
         }
     }
 });
 
-// --- ROTA DE REGISTO EXISTENTE (sem alterações necessárias) ---
+// --- ROTA DE REGISTO EXISTENTE ---
 app.post('/api/auth/register', async (req, res) => {
     const { username, password } = req.body;
 
@@ -116,20 +109,15 @@ app.post('/api/auth/register', async (req, res) => {
         return res.status(400).json({ message: 'Nome de utilizador e password são obrigatórios.' });
     }
 
-    // Validação de comprimento da password (recomendado, para fins de dev pode ser mais baixo)
-    if (password.length < 6) { // Mínimo de 6 caracteres para dev, idealmente 8+
+    // Validação de comprimento da password
+    if (password.length < 6) {
         console.log('Erro de registo: Password muito curta.');
         return res.status(400).json({ message: 'A password deve ter pelo menos 6 caracteres.' });
     }
 
     let connection;
     try {
-        connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'palanca_negra_cafe'
-        });
+        connection = await pool.getConnection(); // Obtém uma conexão do pool
 
         // 1. Verificar se o utilizador já existe
         const [existingUsers] = await connection.execute('SELECT username FROM users WHERE username = ?', [username]);
@@ -139,7 +127,7 @@ app.post('/api/auth/register', async (req, res) => {
         }
 
         // 2. Hash da password
-        const hashedPassword = await bcrypt.hash(password, 10); // 10 é o 'salt rounds' - nível de complexidade do hash
+        const hashedPassword = await bcrypt.hash(password, 10); // 10 é o 'salt rounds'
 
         // 3. Inserir o novo utilizador na base de dados
         const [result] = await connection.execute(
@@ -155,14 +143,14 @@ app.post('/api/auth/register', async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor ao registar o utilizador.' });
     } finally {
         if (connection) {
-            await connection.end();
-            console.log('Conexão com o banco de dados fechada.');
+            connection.release(); // Libera a conexão de volta para o pool
+            console.log('Conexão com o banco de dados liberada.');
         }
     }
 });
 
 
-// --- OUTRAS ROTAS (CONTACT, ADMIN MESSAGES) ---
+// --- ROTA DE CONTACTO ---
 app.post('/api/contact', async (req, res) => {
     const { nome, email, mensagem } = req.body;
 
@@ -172,12 +160,7 @@ app.post('/api/contact', async (req, res) => {
 
     let connection;
     try {
-        connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'palanca_negra_cafe'
-        });
+        connection = await pool.getConnection(); // Obtém uma conexão do pool
 
         const [rows] = await connection.execute(
             'INSERT INTO messages (name, email, message, created_at) VALUES (?, ?, ?, NOW())',
@@ -194,21 +177,17 @@ app.post('/api/contact', async (req, res) => {
 
     } finally {
         if (connection) {
-            await connection.end();
-            console.log('Conexão com o banco de dados fechada.');
+            connection.release(); // Libera a conexão de volta para o pool
+            console.log('Conexão com o banco de dados liberada.');
         }
     }
 });
 
+// --- ROTA ADMIN MESSAGES (GET) ---
 app.get('/api/admin/messages', authenticateToken, async (req, res) => {
     let connection;
     try {
-        connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'palanca_negra_cafe'
-        });
+        connection = await pool.getConnection(); // Obtém uma conexão do pool
 
         const [rows] = await connection.execute('SELECT id, name, email, message, created_at FROM messages ORDER BY created_at DESC');
 
@@ -220,23 +199,19 @@ app.get('/api/admin/messages', authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor ao buscar as mensagens.' });
     } finally {
         if (connection) {
-            await connection.end();
-            console.log('Conexão com o banco de dados fechada.');
+            connection.release(); // Libera a conexão de volta para o pool
+            console.log('Conexão com o banco de dados liberada.');
         }
     }
 });
 
+// --- ROTA ADMIN MESSAGES (DELETE) ---
 app.delete('/api/admin/messages/:id', authenticateToken, async (req, res) => {
     const { id } = req.params;
     let connection;
 
     try {
-        connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'palanca_negra_cafe'
-        });
+        connection = await pool.getConnection(); // Obtém uma conexão do pool
 
         const [result] = await connection.execute('DELETE FROM messages WHERE id = ?', [id]);
 
@@ -253,11 +228,36 @@ app.delete('/api/admin/messages/:id', authenticateToken, async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor ao apagar a mensagem.' });
     } finally {
         if (connection) {
-            await connection.end();
-            console.log('Conexão com o banco de dados fechada.');
+            connection.release(); // Libera a conexão de volta para o pool
+            console.log('Conexão com o banco de dados liberada.');
         }
     }
 });
+
+// --- ROTA DE TESTE DE CONEXÃO AO BANCO DE DADOS ---
+app.get('/api/test-db-connection', async (req, res) => {
+    let connection;
+    try {
+        connection = await pool.getConnection();
+        const [rows] = await connection.execute('SELECT 1 + 1 AS solution'); // Query simples para testar
+        connection.release();
+        res.status(200).json({
+            message: 'Conexão com o banco de dados TiDB bem-sucedida!',
+            solution: rows[0].solution
+        });
+    } catch (error) {
+        console.error('Erro na rota de teste de conexão com o DB:', error);
+        res.status(500).json({
+            message: 'Erro ao conectar ao banco de dados TiDB.',
+            error: error.message
+        });
+    } finally {
+        if (connection) {
+            connection.release();
+        }
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Backend rodando em http://localhost:${port}`);
@@ -266,4 +266,5 @@ app.listen(port, () => {
     console.log('Aguardando requisições na rota /api/auth/register (POST)');
     console.log('Aguardando requisições na rota /api/admin/messages (GET - PROTEGIDA!)');
     console.log('Aguardando requisições na rota /api/admin/messages/:id (DELETE - PROTEGIDA!)');
+    console.log('A rota de teste de conexão com o banco de dados é /api/test-db-connection (GET)');
 });
