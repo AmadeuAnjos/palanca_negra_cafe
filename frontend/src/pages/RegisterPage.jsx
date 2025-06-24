@@ -1,5 +1,9 @@
+// src/pages/RegisterPage.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
+// AQUI ESTÁ A MUDANÇA ESSENCIAL: Definição da URL base da API
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -24,7 +28,8 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await fetch('/api/auth/register', { // Endpoint de registo
+      // AQUI ESTÁ A MUDANÇA: Usando API_BASE_URL para construir a URL completa
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,13 +43,15 @@ export default function RegisterPage() {
         setMessage(data.message || 'Registo bem-sucedido! Faça login para continuar.');
         setTimeout(() => {
           navigate('/login'); // Redireciona para a página de login após o registo
-        }, 1500); 
+        }, 1500);
       } else {
-        setError(data.message || 'Erro no registo. Tente outro nome de utilizador.');
+        // Assume que `data.message` contém a mensagem de erro do backend
+        setError(data.message || 'Erro no registo. Tente outro nome de utilizador ou verifique os dados.');
       }
     } catch (err) {
-      setError('Erro de conexão: Não foi possível contactar o servidor. Tente novamente mais tarde.');
-      console.error('Erro de rede ou servidor:', err);
+      // Captura erros de rede (DNS falho, servidor offline, CORS) ou JSON inválido
+      setError('Erro de conexão: Não foi possível contactar o servidor ou a resposta foi inválida. Tente novamente mais tarde.');
+      console.error('Erro de rede ou servidor ao registar:', err);
     } finally {
       setIsLoading(false);
     }
@@ -53,9 +60,9 @@ export default function RegisterPage() {
   return (
     <div className="font-sans min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-100">
       <img
-        src="/images/coffee-shop-login-bg.jpg" 
+        src="/images/coffee-shop-login-bg.jpg"
         alt="Fundo de Cafeteria"
-        className="absolute inset-0 h-full w-full object-cover z-0 filter brightness-[0.4] contrast-[1.1] scale-105 transition-transform duration-500 ease-out" 
+        className="absolute inset-0 h-full w-full object-cover z-0 filter brightness-[0.4] contrast-[1.1] scale-105 transition-transform duration-500 ease-out"
       />
       <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
 
@@ -66,7 +73,7 @@ export default function RegisterPage() {
           </h2>
           <p className="text-xl text-gray-600 py-2">Criar Nova Conta</p>
         </div>
-        
+
         {message && (
           <div className="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-md" role="alert">
             <p className="font-semibold">{message}</p>
@@ -81,7 +88,7 @@ export default function RegisterPage() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-gray-800 text-sm font-semibold mb-2">
-              Nome
+              Nome de Utilizador
             </label>
             <input
               type="text"
@@ -124,7 +131,7 @@ export default function RegisterPage() {
               aria-label="Confirmar Password"
             />
           </div>
-          
+
           <div>
             <button
               type="submit"
