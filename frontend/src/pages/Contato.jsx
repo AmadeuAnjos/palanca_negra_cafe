@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import ThanksModal from '../components/ThanksModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { Helmet } from 'react-helmet-async'; // Importar Helmet
+import { Helmet } from 'react-helmet-async'; 
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -29,7 +31,7 @@ export default function Contact() {
     setError(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
