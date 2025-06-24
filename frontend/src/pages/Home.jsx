@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async'; // Importar Helmet
+import { Helmet } from 'react-helmet-async'; 
 
 export default function Home() {
   const highlights = [
@@ -46,20 +46,17 @@ export default function Home() {
       <Helmet>
         <title>Palanca Negra Café - Lanches, Pizzas, Doces e Mais em Viana do Castelo</title>
 
-        {/* Meta Descrição (o pequeno texto que aparece abaixo do título nos resultados de busca) */}
         <meta
           name="description"
           content="Descubra o Palanca Negra Café em Darque, Viana do Castelo. Oferecemos deliciosas pizzas, sandes, cachorros, tostas, pastéis de nata, tiramisu e muito mais. Venha experimentar a nossa tradição e sabor!"
         />
 
-        {/* Keywords (menos importantes hoje em dia, mas ainda podem ser incluídas) */}
         <meta
           name="keywords"
           content="Palanca Negra Café, café, pastelaria, lanches, pizzas, cachorros, tostas, pastéis de nata, tiramisu, Viana do Castelo, Darque, restaurante, comida portuguesa, doces"
         />
 
-        {/* Canonical URL (ajuda a evitar conteúdo duplicado, aponta para a versão preferencial da página) */}
-        <link rel="canonical" href="https://www.teudominio.pt/" /> {/* Altera para o teu domínio real */}
+        <link rel="canonical" href="https://www.teudominio.pt/" /> 
 
         {/* Open Graph Tags (para partilhas nas redes sociais - Facebook, LinkedIn, etc.) */}
         <meta property="og:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
