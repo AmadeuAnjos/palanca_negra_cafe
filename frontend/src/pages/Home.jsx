@@ -44,7 +44,6 @@ export default function Home() {
   return (
     <div className="font-sans">
       <Helmet>
-        {/* Título da Página (o que aparece na aba do navegador e nos resultados de busca) */}
         <title>Palanca Negra Café - Lanches, Pizzas, Doces e Mais em Viana do Castelo</title>
 
         {/* Meta Descrição (o pequeno texto que aparece abaixo do título nos resultados de busca) */}
