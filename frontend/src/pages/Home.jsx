@@ -61,15 +61,14 @@ export default function Home() {
         <meta property="og:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
         <meta property="og:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.teudominio.pt/" /> {/* Altera para o teu domínio real */}
-        <meta property="og:image" content="https://www.teudominio.pt/images/banner.jpg" /> {/* Altera para o teu domínio real e uma imagem relevante */}
+        <meta property="og:url" content="https://www.teudominio.pt/" /> 
+        <meta property="og:image" content="https://www.teudominio.pt/images/banner.jpg" />
         <meta property="og:site_name" content="Palanca Negra Café" />
 
-        {/* Twitter Card Tags (para partilhas no Twitter) */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
         <meta name="twitter:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
-        <meta name="twitter:image" content="https://www.teudominio.pt/images/banner.jpg" /> {/* Altera para o teu domínio real e uma imagem relevante */}
+        <meta name="twitter:image" content="https://www.teudominio.pt/images/banner.jpg" /> 
       </Helmet>
 
       <main>
