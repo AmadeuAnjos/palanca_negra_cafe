@@ -58,7 +58,6 @@ export default function Home() {
 
         <link rel="canonical" href="https://www.teudominio.pt/" /> 
 
-        {/* Open Graph Tags (para partilhas nas redes sociais - Facebook, LinkedIn, etc.) */}
         <meta property="og:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
         <meta property="og:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
         <meta property="og:type" content="website" />
