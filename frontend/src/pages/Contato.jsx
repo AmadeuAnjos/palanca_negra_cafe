@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import ThanksModal from '../components/ThanksModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { Helmet } from 'react-helmet-async'; 
+import { Helmet } from 'react-helmet-async'; // Importar Helmet
 
+// ---- AQUI ESTÁ A MUDANÇA PRINCIPAL ----
+// Define a URL base da sua API usando a variável de ambiente do Vite
 const API_BASE_URL = import.meta.env.VITE_API_URL;
+// ---- FIM DA MUDANÇA PRINCIPAL ----
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -31,6 +34,8 @@ export default function Contact() {
     setError(null);
 
     try {
+      // ---- AQUI ESTÁ A MUDANÇA NO FETCH ----
+      // Agora o fetch usa a API_BASE_URL + o caminho da rota
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
@@ -38,6 +43,7 @@ export default function Contact() {
         },
         body: JSON.stringify(formData),
       });
+      // ---- FIM DA MUDANÇA NO FETCH ----
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -100,12 +106,12 @@ export default function Contact() {
               src="/images/banner.jpg" // Pode usar uma imagem específica de contato aqui, se tiveres
               alt="Banner de Lanches e Pizzas"
               className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
-                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+                                          md:inset-x-4 md:w-[calc(100%-2rem)]"
             />
 
             <div
               className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
-                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
+                                          md:inset-x-4 md:w-[calc(100%-2rem)]"
             ></div>
 
             <div className="relative z-20 text-center text-white">
@@ -117,7 +123,7 @@ export default function Contact() {
         </div>
       </section>
 
-     
+      
       {/* Formulário de Contato */}
 <section className="py-16 bg-white flex items-center justify-center">
   <div className="container mx-auto px-4">
@@ -195,7 +201,7 @@ export default function Contact() {
   </div>
 </section>
 
-     
+      
       {/* Informações de Contato */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -248,7 +254,7 @@ export default function Contact() {
         </div>
       </section>
 
-     
+      
       {/* Mapa */}
       <section className="bg-white py-8">
         <div className="container mx-auto px-4">
