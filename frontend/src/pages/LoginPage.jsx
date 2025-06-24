@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; 
+import { Link, useNavigate } from 'react-router-dom';
+
+// AQUI ESTÁ A MUDANÇA ESSENCIAL
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -17,7 +20,8 @@ export default function LoginPage() {
     setMessage('');
 
     try {
-      const response = await fetch('/api/auth/login', {
+      // AQUI ESTÁ A MUDANÇA NO FETCH
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +36,7 @@ export default function LoginPage() {
         setMessage(data.message || 'Login bem-sucedido!');
         setTimeout(() => {
           navigate('/admin/messages');
-        }, 1000); 
+        }, 1000);
       } else {
         setError(data.message || 'Erro no login. Verifique as suas credenciais.');
       }
@@ -46,11 +50,11 @@ export default function LoginPage() {
 
   return (
     <div className="font-sans min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-100">
-      {/* Background Image - Melhorado UI/UX */}
+      {/* Background Image */}
       <img
         src="/images/coffee-shop-login-bg.jpg" // Certifique-se que esta imagem existe na pasta public/images
         alt="Fundo de Cafeteria"
-        className="absolute inset-0 h-full w-full object-cover z-0 filter brightness-[0.4] contrast-[1.1] scale-105 transition-transform duration-500 ease-out" 
+        className="absolute inset-0 h-full w-full object-cover z-0 filter brightness-[0.4] contrast-[1.1] scale-105 transition-transform duration-500 ease-out"
       />
       {/* Overlay Subtil para legibilidade */}
       <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
@@ -63,7 +67,7 @@ export default function LoginPage() {
           </h2>
           <p className="text-gray-600 py-2">Acesso Administrativo</p>
         </div>
-        
+
         {/* Mensagens: Feedback visual aprimorado */}
         {message && (
           <div className="bg-green-50 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded-md" role="alert">
@@ -107,7 +111,7 @@ export default function LoginPage() {
               aria-label="Password"
             />
           </div>
-          
+
           <div className="flex items-center justify-end text-sm">
             <Link to="/recuperar-senha" className="font-medium text-primary hover:text-primary-dark transition duration-200">
               Esqueceu sua senha?
