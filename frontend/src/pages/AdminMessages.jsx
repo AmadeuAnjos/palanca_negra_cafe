@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
 // Importar ícones específicos do Heroicons
-import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline'; 
+import { PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/outline';
 
 // Ícones LinkedIn e GitHub (SVG otimizados para um visual mais limpo)
 const LinkedInIcon = (props) => (
@@ -19,6 +19,8 @@ const GitHubIcon = (props) => (
   </svg>
 );
 
+// AQUI ESTÁ A MUDANÇA ESSENCIAL
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function AdminMessages() {
   const [messages, setMessages] = useState([]);
@@ -73,7 +75,8 @@ export default function AdminMessages() {
     const token = localStorage.getItem('accessToken');
 
     try {
-      const response = await fetch('/api/admin/messages', {
+      // AQUI ESTÁ A MUDANÇA NO FETCH
+      const response = await fetch(`${API_BASE_URL}/api/admin/messages`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -121,7 +124,8 @@ export default function AdminMessages() {
     }
 
     try {
-      const response = await fetch(`/api/admin/messages/${messageToDelete}`, {
+      // AQUI ESTÁ A MUDANÇA NO FETCH
+      const response = await fetch(`${API_BASE_URL}/api/admin/messages/${messageToDelete}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -264,11 +268,11 @@ export default function AdminMessages() {
               <p className="text-lg font-semibold mb-2">Amadeu dos Anjos Barros</p>
               <p className="text-sm">Web Developer</p>
               <p className="text-sm mt-2 flex items-center gap-2">
-                <PhoneIcon className="w-4 h-4 text-white" /> {/* Ícone do Heroicons, agora branco */}
+                <PhoneIcon className="w-4 h-4 text-white" />
                 <a href="tel:+351967978919" className="hover:text-gray-300 transition duration-200">967 978 919</a>
               </p>
               <p className="text-sm flex items-center gap-2">
-                <EnvelopeIcon className="w-4 h-4 text-white" /> {/* Ícone do Heroicons, agora branco */}
+                <EnvelopeIcon className="w-4 h-4 text-white" />
                 <a href="mailto:anjosbarrosclean@icloud.com" className="hover:text-gray-300 transition duration-200">anjosbarrosclean@icloud.com</a>
               </p>
             </div>
@@ -277,15 +281,15 @@ export default function AdminMessages() {
             <div className="flex gap-6 mt-4 md:mt-0">
               {/* LinkedIn */}
               <a href="https://www.linkedin.com/in/amadeuanjos/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition duration-200" title="LinkedIn de Amadeu">
-                <LinkedInIcon className="w-7 h-7" /> 
+                <LinkedInIcon className="w-7 h-7" />
               </a>
               {/* GitHub */}
               <a href="https://github.com/AmadeuAnjos" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition duration-200" title="GitHub de Amadeu">
-                <GitHubIcon className="w-7 h-7" /> 
+                <GitHubIcon className="w-7 h-7" />
               </a>
             </div>
           </div>
-          <div className="max-w-7xl mx-auto text-center mt-4 text-sm text-gray-300"> {/* Texto de copyright em cinzento mais claro */}
+          <div className="max-w-7xl mx-auto text-center mt-4 text-sm text-gray-300">
             <p>&copy; {new Date().getFullYear()} Desenvolvido por Amadeu dos Anjos Barros. Todos os direitos reservados.</p>
           </div>
         </footer>
