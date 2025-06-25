@@ -10,9 +10,9 @@ export default function Navbar() {
   };
 
   const menuItems = [
-    { name: 'Home', path: '/' },
+    { name: 'Início', path: '/' },
     { name: 'Sobre', path: '/sobre' },
-    { name: 'Cardápio', path: '/cardapio' },
+    { name: 'Menu', path: '/cardapio' },
     { name: 'Contactos', path: '/contato' }
   ];
 
@@ -49,14 +49,14 @@ export default function Navbar() {
             md:hidden             /* Esconde em telas maiores */
             text-2xl              /* Tamanho do ícone */
             ${mobileMenuOpen ? 'text-black' : 'text-white'} /* Cor condicional: preto se aberto, branco se fechado */
-            bg-transparent        /* Remove qualquer fundo padrão do botão */
-            border-none           /* Remove qualquer borda padrão */
-            p-0                   /* Remove qualquer padding padrão do botão */
-            focus:outline-none focus:ring-2 focus:ring-accent /* Estilo de foco para acessibilidade */
-            transition-colors duration-300 /* Transição suave da cor */
-            cursor-pointer        /* Indica que é clicável */
-            justify-self-end /* Alinha à direita na sua célula grid (mobile) */
-            z-20 /* Garante que fique por cima do H1 */
+            bg-transparent      
+            border-none          
+            p-0            
+            focus:outline-none focus:ring-2 focus:ring-accent
+            transition-colors duration-300
+            cursor-pointer
+            justify-self-end
+            z-20
           `} 
           onClick={toggleMobileMenu}
           aria-label="Menu mobile"
@@ -69,7 +69,7 @@ export default function Navbar() {
           <ul className="flex space-x-6">
             {menuItems.map((item) => (
               <li key={item.name}>
-                <Link to={item.path} className="hover:text-accent font-medium">
+                <Link to={item.path} className="hover:text-white font-medium">
                   {item.name}
                 </Link>
               </li>

@@ -96,9 +96,9 @@ export default function Home() {
                 <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
                 <Link
                   to="/cardapio"
-                  className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition duration-300"
+                  className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-primary hover:text-white transition duration-300"
                 >
-                  Ver Cardápio
+                  Ver Menu
                 </Link>
               </div>
             </div>
