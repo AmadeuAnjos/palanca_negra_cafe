@@ -116,7 +116,7 @@ export default function Contact() {
 
             <div className="relative z-20 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-                Tire suas dúvidas
+                Esclareça as suas dúvidas
               </h2>
             </div>
           </div>
@@ -129,7 +129,7 @@ export default function Contact() {
   <div className="container mx-auto px-4">
     <div>
       <h2 className="text-3xl font-playfair font-bold text-center mb-12 text-black">
-        Envie sua Mensagem
+        Contacte-nos
       </h2>
 
       {error && (

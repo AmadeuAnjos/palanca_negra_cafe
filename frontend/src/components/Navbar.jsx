@@ -13,7 +13,7 @@ export default function Navbar() {
     { name: 'Home', path: '/' },
     { name: 'Sobre', path: '/sobre' },
     { name: 'Cardápio', path: '/cardapio' },
-    { name: 'Contato', path: '/contato' }
+    { name: 'Contactos', path: '/contato' }
   ];
 
   return (
