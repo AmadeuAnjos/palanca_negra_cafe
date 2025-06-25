@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // This line is correct and should appear only once.
+import { Link, useNavigate } from 'react-router-dom';
+
+// AQUI ESTÁ A MUDANÇA ESSENCIAL: Definição da URL base da API
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 export default function ForgotPasswordPage() {
-  const [username, setUsername] = useState('');
+  // Mudança: Para a recuperação de senha, é mais comum pedir o email em vez do username,
+  // pois o email é o destino do link de recuperação. Se seu backend usa username,
+  // mantenha 'username', mas o padrão da indústria é 'email'.
+  // Se for email, mude para: const [email, setEmail] = useState('');
+  const [username, setUsername] = useState(''); 
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  // eslint-disable-next-line
-  const navigate = useNavigate(); // Correct initialization of the hook.
+  const navigate = useNavigate(); // eslint-disable-line
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,22 +23,23 @@ export default function ForgotPasswordPage() {
     setMessage('');
 
     try {
-      const response = await fetch('/api/auth/forgot-password', {
+      // AQUI ESTÁ A MUDANÇA: Usando API_BASE_URL para construir a URL completa
+      const response = await fetch(`${API_BASE_URL}/api/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username }),
+        body: JSON.stringify({ username }), // Se mudar para email, mude aqui para { email }
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // As discussed, no navigation here. User needs to check email.
         setMessage(data.message || 'Se o utilizador existir, um link de recuperação de senha foi enviado para o seu email associado.');
         setUsername(''); // Clear the input field on success.
       } else {
-        setError(data.message || 'Erro ao tentar recuperar a senha. Verifique o nome de utilizador.');
+        // Mantenha a mensagem genérica ou uma mensagem de erro do backend se apropriado.
+        setError(data.message || 'Erro ao tentar recuperar a senha. Tente novamente mais tarde.');
       }
     } catch (err) {
       setError('Erro de conexão: Não foi possível contactar o servidor. Tente novamente mais tarde.');
@@ -76,14 +83,14 @@ export default function ForgotPasswordPage() {
               Nome de Utilizador
             </label>
             <input
-              type="text"
-              id="username"
+              type="text" // Se mudar para email, mude para type="email"
+              id="username" // Se mudar para email, mude para id="email"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200 text-gray-800 placeholder-gray-400"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Digite seu nome de utilizador"
+              value={username} // Se mudar para email, mude para value={email}
+              onChange={(e) => setUsername(e.target.value)} // Se mudar para email, mude para onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu nome de utilizador" // Se mudar para email, mude para "Digite seu email"
               required
-              aria-label="Nome de Utilizador"
+              aria-label="Nome de Utilizador" // Se mudar para email, mude para "Email para recuperação"
             />
             <p className="text-sm text-gray-500 mt-2">
               Um link de recuperação será enviado para o email associado a esta conta (se existir).
