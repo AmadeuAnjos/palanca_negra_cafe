@@ -19,7 +19,7 @@ export default function Home() {
       name: 'Sandes de Fiambre',
       description: 'Crocante por fora, cremoso por dentro, com a melhor qualidade. Venha experimentar',
       price: '€ 2.00',
-      image: '/images/sandefiambre.webp'
+      image: '/images/sandefiambre.jpg'
     },
     {
       name: 'Tosta Mista',
@@ -37,7 +37,7 @@ export default function Home() {
       name: 'Tiramisu',
       description: 'Deleite-se com o nosso tiramisu, uma sobremesa clássica com camadas de café, queijo mascarpone e cacau.',
       price: '€ 4.00',
-      image: '/images/tiramisu.png'
+      image: '/images/tiramisu.jpg'
     }
   ];
 
@@ -78,7 +78,7 @@ export default function Home() {
               className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
             >
               <img
-                src="/images/banner.jpg"
+                src="/images/banner1.jpg"
                 alt="Banner de Lanches e Pizzas"
                 className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
                                   md:inset-x-4 md:w-[calc(100%-2rem)]"

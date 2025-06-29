@@ -30,7 +30,7 @@ export default function Cardapio() {
       name: 'Sandes de Fiambre',
       description: 'Sandes simples e saborosa, com fiambre e queijo derretido no pão fresquinho.',
       price: '€ 2.50',
-      image: '/images/sandefiambre.webp'
+      image: '/images/sandefiambre.jpg'
     },
     {
       name: 'Tosta Mista',
@@ -92,7 +92,7 @@ export default function Cardapio() {
       name: 'Francesinha',
       description: 'Uma versão da famosa sanduíche do Porto, com molho rico e picante, queijo derretido e batata frita.',
       price: '€ 8.50',
-      image: '/images/francesinha.jpeg'
+      image: '/images/francesinha.jpg'
     },
     {
       name: 'Sopa do Dia',
@@ -119,7 +119,7 @@ export default function Cardapio() {
       nome: 'Tiramisu Italiano',
       descricao: 'Deleite-se com o nosso autêntico tiramisu, uma sobremesa clássica com camadas de café, queijo mascarpone e cacau em pó.',
       price: '€ 4.00',
-      image: '/images/tiramisu.png'
+      image: '/images/tiramisu.jpg'
     },
     {
       nome: 'Mousse de Chocolate Caseira',
@@ -131,7 +131,7 @@ export default function Cardapio() {
       nome: 'Toucinho do Céu',
       descricao: 'Doce conventual português, com amêndoa e fios de ovos. Uma verdadeira tentação.',
       preco: '€ 2.90',
-      image: '/images/toucinho-ceu.webp'
+      image: '/images/toucinho-ceu.jpg'
     },
     {
       nome: 'Pudim Abade de Priscos',
@@ -242,7 +242,7 @@ export default function Cardapio() {
               className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
             >
               <img
-                src="/images/banner.jpg"
+                src="/images/banner1.jpg"
                 alt="Banner de Lanches e Pizzas"
                 className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
                                   md:inset-x-4 md:w-[calc(100%-2rem)]"

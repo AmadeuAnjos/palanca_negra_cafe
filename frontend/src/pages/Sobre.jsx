@@ -47,7 +47,7 @@ export default function Sobre() {
               className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
             >
               <img
-                src="/images/banner.jpg"
+                src="/images/banner1.jpg"
                 alt="Banner do Palanca Negra Café" 
                 className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
                                   md:inset-x-4 md:w-[calc(100%-2rem)]"
@@ -91,7 +91,7 @@ export default function Sobre() {
               <div className="grid md:grid-cols-2 gap-8 mb-12">
                 <div>
                   <img
-                    src="/images/funders.jpg"
+                    src="/images/team.jpg"
                     alt="Fundadores do Palanca Negra Café"
                     className="rounded-lg shadow-md w-full"
                   />
@@ -115,7 +115,7 @@ export default function Sobre() {
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="order-1 md:order-2">
                   <img
-                    src="/images/team.jpg"
+                    src="/images/funders.jpg"
                     alt="Equipa do Palanca Negra Café"
                     className="rounded-lg shadow-md w-full"
                   />

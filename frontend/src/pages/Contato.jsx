@@ -103,7 +103,7 @@ export default function Contact() {
             className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
           >
             <img
-              src="/images/banner.jpg" // Pode usar uma imagem específica de contato aqui, se tiveres
+              src="/images/banner1.jpg"
               alt="Banner de Lanches e Pizzas"
               className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
                                           md:inset-x-4 md:w-[calc(100%-2rem)]"

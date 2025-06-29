@@ -27,7 +27,7 @@ export default function Navbar() {
           flex items-center
           flex-shrink-0
         ">
-          <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-20" /> {/* mr-4 de volta aqui para desktop */}
+          <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-20" /> 
           
           <h1 className="
             font-cookie font-bold 
@@ -46,9 +46,9 @@ export default function Navbar() {
 
         <button 
           className={`
-            md:hidden             /* Esconde em telas maiores */
-            text-2xl              /* Tamanho do ícone */
-            ${mobileMenuOpen ? 'text-black' : 'text-white'} /* Cor condicional: preto se aberto, branco se fechado */
+            md:hidden  
+            text-2xl             
+            ${mobileMenuOpen ? 'text-black' : 'text-white'} 
             bg-transparent      
             border-none          
             p-0            
