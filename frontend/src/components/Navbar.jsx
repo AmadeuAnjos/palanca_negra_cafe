@@ -27,7 +27,10 @@ export default function Navbar() {
           flex items-center
           flex-shrink-0
         ">
-          <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-20" /> 
+          <Link
+          to="/">
+          <img src="/images/logo.png" alt="Logotipo" className="h-16 mr-4 z-20" />
+          </Link>
           
           <h1 className="
             font-cookie font-bold 
@@ -39,6 +42,7 @@ export default function Navbar() {
             py-2
             absolute left-1/2 -translate-x-1/2 
             md:static md:translate-x-0 md:text-left
+            tracking-tighter
           ">
             Palanca Negra Café
           </h1>
