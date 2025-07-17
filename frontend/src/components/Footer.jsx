@@ -3,7 +3,7 @@ import { faFacebookF, faInstagram, faWhatsapp } from '@fortawesome/free-brands-s
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-primary text-white py-12">
       <div className="container mx-auto px-4">
         <div className="md:flex justify-between">
           
@@ -32,9 +32,8 @@ const ContactInfo = () => (
 const BusinessHours = () => (
   <div className="mb-8 md:mb-0">
     <h3 className="text-xl font-serif font-bold mb-4">Horário de Funcionamento</h3>
-    <p>Segunda a Sexta: 8h - 20h</p>
-    <p>Sábado: 9h - 22h</p>
-    <p>Domingo: 9h - 18h</p>
+    <p>Segunda a Sábado: 6h - 22h</p>
+    <p>Domingo: 6h - 12h</p>
   </div>
 )
 
@@ -58,7 +57,7 @@ const SocialMedia = () => (
         ariaLabel="WhatsApp" 
       />
     </div>
-    <p className="mt-4">contato@palancanegracafe.com.br</p>
+    <p className="mt-4">contato@palancanegracafe.pt</p>
     <p>258 322 747</p>
   </div>
 )

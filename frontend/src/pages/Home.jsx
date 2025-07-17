@@ -93,7 +93,9 @@ export default function Home() {
                 <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
                   Venha Conferir
                 </h2>
-                <p className="text-2xl mb-8">Pizzas - Sandes - Cachorros</p>
+                <p className="text-xl md:text-2xl">Explore a nossa variedade de petiscos</p>
+                <p className="text-xl md:text-2xl">snacks de padaria, pastelaria e pizzas</p>
+                <p className="text-xl md:text-2xl mb-4">Francesinhas, hambúrgueres e muito mais!</p>    
                 <Link
                   to="/cardapio"
                   className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-primary hover:text-white transition duration-300"
@@ -139,7 +141,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-16 bg-primary text-black">
+        <section className="py-16 bg-gray-900 text-white">
           <div className="container mx-auto px-4">
             <div className="md:flex items-center">
               <div className="md:w-1/2 mb-8 md:mb-0 md:pr-8">

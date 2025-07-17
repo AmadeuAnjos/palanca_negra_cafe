@@ -17,7 +17,7 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="bg-primary text-black shadow-md">
+    <header className="bg-primary text-white shadow-md">
       <div className="container mx-auto px-4 py-2 
         relative
         grid grid-cols-[minmax(0,auto)_1fr_minmax(0,auto)] items-center gap-4
