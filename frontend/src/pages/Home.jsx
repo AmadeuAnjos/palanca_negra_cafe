@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async'; 
+import { Helmet } from 'react-helmet-async';
+import Slider from 'react-slick'; // Importe o Slider do react-slick
 
 export default function Home() {
   const highlights = [
@@ -41,6 +42,28 @@ export default function Home() {
     }
   ];
 
+  // Dados dos banners para o carrossel (replicando as imagens 4 vezes)
+  const bannerImages = [
+    { src: '/images/banner1.jpg', alt: 'Banner de Lanches e Pizzas 1' },
+    { src: '/images/space.webp', alt: 'Interior da Pastelaria' }, // Usando uma imagem que já tens
+    { src: '/images/pizza.jpg', alt: 'Pizza em Destaque' }, // Usando uma imagem de highlight
+    { src: '/images/cachorro.jpg', alt: 'Cachorro em Destaque' }, // Usando outra imagem de highlight
+  ];
+
+  // Configurações do carrossel
+  const settings = {
+    dots: true, // Mostra os pontos de navegação
+    infinite: true, // Rolagem infinita
+    speed: 500, // Velocidade da transição
+    slidesToShow: 1, // Mostra 1 slide por vez
+    slidesToScroll: 1, // Avança 1 slide por vez
+    autoplay: true, // Rolagem automática
+    autoplaySpeed: 3000, // Intervalo de 3 segundos entre slides
+    fade: true, // Adiciona um efeito de fade na transição
+    cssEase: 'linear', // Tipo de curva de transição CSS
+    arrows: false, // Oculta as setas de navegação (pode ser true se quiser)
+  };
+
   return (
     <div className="font-sans">
       <Helmet>
@@ -56,54 +79,56 @@ export default function Home() {
           content="Palanca Negra Café, café, pastelaria, lanches, pizzas, cachorros, tostas, pastéis de nata, tiramisu, Viana do Castelo, Darque, restaurante, comida portuguesa, doces"
         />
 
-        <link rel="canonical" href="https://www.teudominio.pt/" /> 
+        <link rel="canonical" href="https://www.teudominio.pt/" />
 
         <meta property="og:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
         <meta property="og:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.teudominio.pt/" /> 
+        <meta property="og:url" content="https://www.teudominio.pt/" />
         <meta property="og:image" content="https://www.teudominio.pt/images/banner.jpg" />
         <meta property="og:site_name" content="Palanca Negra Café" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Palanca Negra Café - Lanches e Doces em Viana do Castelo" />
         <meta name="twitter:description" content="Experimente as melhores pizzas, sandes e doces tradicionais no Palanca Negra Café em Darque. Mais de 40 anos de sabor e tradição!" />
-        <meta name="twitter:image" content="https://www.teudominio.pt/images/banner.jpg" /> 
+        <meta name="twitter:image" content="https://www.teudominio.pt/images/banner.jpg" />
       </Helmet>
 
       <main>
         <section className="flex items-center justify-center">
           <div className="container mx-auto">
-            <div
-              className="relative h-96 px-4 flex items-center justify-center overflow-hidden"
-            >
-              <img
-                src="/images/banner1.jpg"
-                alt="Banner de Lanches e Pizzas"
-                className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50
-                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
-              />
-
-              <div
-                className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10
-                                  md:inset-x-4 md:w-[calc(100%-2rem)]"
-              ></div>
-
-              <div className="relative z-20 text-center text-white">
-                <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
-                  Venha Conferir
-                </h2>
-                <p className="text-xl md:text-2xl">Explore a nossa variedade de petiscos</p>
-                <p className="text-xl md:text-2xl">snacks de padaria, pastelaria e pizzas</p>
-                <p className="text-xl md:text-2xl mb-4">Francesinhas, hambúrgueres e muito mais!</p>    
-                <Link
-                  to="/cardapio"
-                  className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-primary hover:text-white transition duration-300"
-                >
-                  Ver Menu
-                </Link>
-              </div>
-            </div>
+            {/* CARROSSEL AQUI */}
+            <Slider {...settings} className="relative h-96 overflow-hidden">
+              {bannerImages.map((banner, index) => (
+                <div key={index} className="h-96 w-full relative">
+                  <img
+                    src={banner.src}
+                    alt={banner.alt}
+                    className="absolute inset-y-0 h-full w-full object-cover z-0 brightness-50 md:inset-x-4 md:w-[calc(100%-2rem)]"
+                  />
+                  {/* Overlay escuro */}
+                  <div
+                    className="absolute inset-y-0 h-full w-full bg-black opacity-40 z-10 md:inset-x-4 md:w-[calc(100%-2rem)]"
+                  ></div>
+                  {/* Conteúdo do banner */}
+                  <div className="relative z-20 text-center text-white flex flex-col items-center justify-center h-full">
+                    <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-4">
+                      Venha Conferir
+                    </h2>
+                    <p className="text-xl md:text-2xl">Explore a nossa variedade de petiscos</p>
+                    <p className="text-xl md:text-2xl">snacks de padaria, pastelaria e pizzas</p>
+                    <p className="text-xl md:text-2xl mb-4">Francesinhas, hambúrgueres e muito mais!</p>
+                    <Link
+                      to="/cardapio"
+                      className="inline-block bg-white text-primary font-bold py-2 px-6 rounded-lg hover:bg-primary hover:text-white transition duration-300"
+                    >
+                      Ver Menu
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+            {/* FIM DO CARROSSEL */}
           </div>
         </section>
 
